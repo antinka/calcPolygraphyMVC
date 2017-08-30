@@ -1,0 +1,38 @@
+﻿@model IEnumerable<calculator.Models.Faltsovka>
+
+@{
+    ViewBag.Title = "Фальцовка";
+}
+
+<h2>Фальцовка</h2>
+
+<p>
+    @Html.ActionLink("Создать новый тип фальцовки", "CreateFaltsovka")
+</p>
+<table class="table">
+    <tr>
+        <th>
+          Тип фальцовки
+        </th>
+        <th>
+           Стоимость
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeFaltsovki)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostFaltsovki)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "EditFaltsovka", new { id = item.IdFaltsovki }) |
+            @Html.ActionLink("Удалить", "DeleteFaltsovka", new { id = item.IdFaltsovki })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,107 @@
+﻿@model IEnumerable<calculator.Models.MyViewModel.ViewOrder>
+
+@{
+    ViewBag.Title = "Корзина";
+}
+
+<h2>Корзина</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Количество
+        </th>
+        <th>
+            Стоимость
+        </th>
+        <th>
+            Формат Бумаги
+        </th>
+        <th>
+            Тип бумаги
+        </th>
+        <th>
+            Плотность
+        </th>
+        <th>
+            Цветность
+        </th>
+        <th>
+            Тип Ламинации
+        </th>
+        <th>
+            Плотность ламинации
+        </th>
+
+        <th>
+            Биговка
+        </th>
+        <th>
+            Фальцовка
+        </th>
+        <th>
+            Закругление углов
+        </th>
+        <th>
+            Дата заказа
+        </th>
+        <th>
+            Статус
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.costOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.formatPaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.typePaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.densityPaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.colour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.typeLam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.densityLam)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.bigovka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.faltsovka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bigovroudAngleka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataOrderMake)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+           @if (item.status == "В обработке")
+            {
+              <td>
+                @Html.ActionLink("Удалить", "DeleteOrderInBasket", new { id = item.id })
+            </td>
+            }
+            
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<calculator.Models.Bigovka>
+
+@{
+    ViewBag.Title = "Биговка";
+}
+
+<h2>Биговка</h2>
+
+<p>
+    @Html.ActionLink("Создать новый тип биговки", "CreateBigovka")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Тип Биговки
+        </th>
+        <th>
+            Стоимость
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeBigovki)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostBigovki)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "EditBigovka", new { id = item.IdBigovki }) |
+            @Html.ActionLink("Удалить", "DeleteBigovka", new { id = item.IdBigovki })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,35 @@
+﻿@model calculator.Models.CharacterLaminMachine
+
+@{
+    ViewBag.Title = "Редактировать характеристику скорости ламинирования";
+}
+
+<h2>Редактировать характеристику скорости ламинирования</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.IdFormatList)
+
+        <div class="form-group">
+           <div class="col-md-10">
+               Количество листов в минуту
+                @Html.EditorFor(model => model.QuantityListInMinute)
+                @Html.ValidationMessageFor(model => model.QuantityListInMinute)
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

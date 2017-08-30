@@ -1,0 +1,43 @@
+﻿@model IEnumerable<calculator.Models.MyViewModel.ViewPriceToner>
+
+@{
+    ViewBag.Title = "Стоимость тонера";
+}
+
+<h2>Стоимость тонера</h2>
+
+<p>
+    @Html.ActionLink(" Изменить стоимость закупки тонера", "EditCostToner")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Формат Бумаги
+        </th>
+        <th>
+            Цветность
+        </th>
+        <th>
+         Стоимость тонера
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.formatPaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.colour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.costToner)
+            </td>
+ 
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,42 @@
+﻿@model calculator.Models.HistoryBuyLam
+
+@{
+    ViewBag.Title = "Редактировать";
+}
+
+<h2>Редактировать</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Date)
+        @Html.HiddenFor(model => model.FormatPaperId)
+        @Html.HiddenFor(model => model.DensityLamId)
+
+        <div class="form-group">
+            <div class="col-md-10">
+                Количество
+                @Html.EditorFor(model => model.QuantityList)
+                @Html.ValidationMessageFor(model => model.QuantityList)
+            </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-10">
+              Стоимость одного экземпляра
+                @Html.EditorFor(model => model.CostOnePage)
+                @Html.ValidationMessageFor(model => model.CostOnePage)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

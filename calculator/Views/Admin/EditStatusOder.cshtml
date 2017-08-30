@@ -1,0 +1,46 @@
+﻿@model calculator.Models.Order
+
+@{
+    ViewBag.Title = "Редактировать статус заказа";
+}
+
+<h2>Редактировать статус заказа</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+      
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.IdOrder)
+        @Html.HiddenFor(model => model.IdFormatProduct)
+        @Html.HiddenFor(model => model.IdTypePapers)
+        @Html.HiddenFor(model => model.IdDensity)
+        @Html.HiddenFor(model => model.IdColour)
+        @Html.HiddenFor(model => model.quantity)
+        @Html.HiddenFor(model => model.IdTypeLam)
+        @Html.HiddenFor(model => model.IdDensityLam)
+        @Html.HiddenFor(model => model.IdFaltsovki)
+        @Html.HiddenFor(model => model.IdBigovki)
+        @Html.HiddenFor(model => model.CostOrger)
+       @Html.HiddenFor(model => model.DataOrderMake)
+
+        @*<div class="form-group">
+             @Html.LabelFor(model => model.IdStatusOrder, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdStatusOrder)
+                @Html.ValidationMessageFor(model => model.IdStatusOrder)
+            </div>
+        </div>*@
+        @Html.DropDownListFor(model => model.IdStatusOrder, (SelectList)ViewBag.StatusOrder)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+

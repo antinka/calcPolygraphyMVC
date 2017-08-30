@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Редактировать стоимость тонера";
+}
+
+<h2>Редактировать стоимость тонера</h2>
+
+@using (Html.BeginForm("EditCostToner"))
+{
+
+    <p>
+        Стоимость одного тонера
+        <input type="number" id="costTon" name="costTon" min="0" value="2000" />
+    </p>
+      <p>
+      Количество копий А4 формата
+          <input type="number" id="copyA4" name="copyA4" min="10" value="10000" />
+    </p>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Изменить" class="btn btn-default" />
+        </div>
+    </div>
+}

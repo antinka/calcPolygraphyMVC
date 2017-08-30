@@ -1,0 +1,35 @@
+﻿@model calculator.Models.CostPage
+
+@{
+    ViewBag.Title = "Редактировать стоимость страниц";
+}
+
+<h2>Редактировать стоимость страниц</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.IdCostPages)
+
+
+                @Html.HiddenFor(model => model.IdDensitiesPage)
+     
+        <div class="form-group">
+           <div class="col-md-10">
+               Стоимость страницы
+                @Html.EditorFor(model => model.CostPaper)
+                @Html.ValidationMessageFor(model => model.CostPaper)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

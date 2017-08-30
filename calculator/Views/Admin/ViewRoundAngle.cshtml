@@ -1,0 +1,39 @@
+﻿@model IEnumerable<calculator.Models.RoundAngle>
+
+@{
+    ViewBag.Title = " Закругление углов";
+}
+
+<h2> Закругление углов</h2>
+
+<p>
+    @Html.ActionLink("Создать новый тип закругления углов", "CreateRoundAngle")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Тип закругления углов
+        </th>
+        <th>
+           Стоимость
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeRoundAngle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostRoundAngle)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "EditRoundAngle", new { id = item.IdRoundAngle }) |
+   
+            @Html.ActionLink("Удалить", "DeleteRoundAngle", new { id = item.IdRoundAngle })
+        </td>
+    </tr>
+}
+
+</table>

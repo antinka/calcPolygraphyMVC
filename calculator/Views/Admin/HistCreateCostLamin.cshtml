@@ -1,0 +1,38 @@
+﻿@model calculator.Models.MyViewModel.SendDoubleCost
+@{
+    ViewBag.Title = "Создать новую закупку ламинационного материала ";
+}
+
+<h2>Создать новую закупку ламинационного материала</h2>
+
+@using (Html.BeginForm("HistCreateCostLamin"))
+{
+    <p>
+        Формат
+        @Html.DropDownList("IdFormatProduct", ViewBag.FormatProduct as SelectList)
+    </p>
+    <p>
+        Ламинация
+        @Html.DropDownList("IdTypeLam", ViewBag.TypeLamination as SelectList)
+    </p>
+    <p>
+        Плотность ламинации
+        <input type="number" id="DensLam" name="DensLam" min="10" value="10" />
+    </p>
+     <p>
+        Количество
+         <input type="number" id="quantity" name="quantity" min="1" value="100" />
+    </p>
+    <p>
+        Стоимость 1 шт
+        @Html.EditorFor(model => model.cost)
+        @Html.ValidationMessageFor(model => model.cost)
+
+    </p>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Создать" class="btn btn-default" />
+        </div>
+    </div>
+}

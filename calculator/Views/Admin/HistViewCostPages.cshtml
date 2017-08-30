@@ -1,0 +1,62 @@
+﻿@model IEnumerable<calculator.Models.MyViewModel.ViewHistBuyPage>
+
+@{
+    ViewBag.Title = "История закупок";
+}
+
+<h2>История закупок</h2>
+
+<p>
+    @Html.ActionLink("Добавить новую закупку", "HistCreateCostPages")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Формат бумаги
+        </th>
+        <th>
+         Плотность
+        </th>
+        <th>
+           Тип бумаги
+        </th>
+        <th>
+          Количество
+        </th>
+        <th>
+           Дата
+        </th>
+        <th>
+            Стоимость одного экземпляра
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.formatPaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.densityPaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.typePaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityList)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostOnePage)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "HistEditCostPage", new { id = item.id }) 
+            </td>
+        </tr>
+    }
+
+</table>

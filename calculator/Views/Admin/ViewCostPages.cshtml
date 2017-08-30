@@ -1,0 +1,55 @@
+﻿@model IEnumerable<calculator.Models.MyViewModel.ViewCostPage>
+@{
+    ViewBag.Title = "Стоимость бумаги";
+}
+
+<h2>Стоимость бумаги</h2>
+
+<p>
+    @Html.ActionLink("Добавить новый тип бумаги", "CreateCostPages")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Тип Бумаги
+        </th>
+        <th>
+            Плотность
+        </th>
+        <th>
+        Формат
+        </th>
+        <th>
+           Стоимость
+        </th>
+
+
+
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.typePaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.densityPaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.formatPaper)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.costPage)
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Редактировать", "EditCostPages", new { id = item.id }) |
+                @Html.ActionLink("Удалить", "DeleteCostPages", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

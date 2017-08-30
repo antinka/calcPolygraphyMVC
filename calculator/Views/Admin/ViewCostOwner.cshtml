@@ -1,0 +1,59 @@
+﻿@model IEnumerable<calculator.Models.CostOfOwner>
+
+@{
+    ViewBag.Title = "Редактировать стоимость владения";
+}
+
+<h2>Редактировать стоимость владения</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Возврат инвестиций
+        </th>
+        <th>
+            Заработная плата
+        </th>
+        <th>
+            Аренда
+        </th>
+        <th>
+           Месячная стоимость владения машинами
+        </th>
+        <th>
+            Общепроизводственные издержки
+        </th>
+        <th>
+            Количество рабочих часов машин в месяц 
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnInvestision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostOwnMachine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeneralProdSpend)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeWorkingInMonth)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "EditCostOwner", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

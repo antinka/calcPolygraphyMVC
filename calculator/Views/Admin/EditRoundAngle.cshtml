@@ -1,0 +1,45 @@
+﻿@model calculator.Models.RoundAngle
+
+@{
+    ViewBag.Title = "Редактировать закругление углов";
+}
+
+<h2>Редактировать закругление углов</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.IdRoundAngle)
+
+        <div class="form-group">
+            
+           @* @Html.LabelFor(model => model.TypeRoundAngle, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                Тип закругления углов
+                @Html.EditorFor(model => model.TypeRoundAngle)
+                @Html.ValidationMessageFor(model => model.TypeRoundAngle)
+            </div>
+        </div>
+
+        <div class="form-group">
+            
+          @*  @Html.LabelFor(model => model.CostRoundAngle, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                Стоимость
+                @Html.EditorFor(model => model.CostRoundAngle)
+                @Html.ValidationMessageFor(model => model.CostRoundAngle)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

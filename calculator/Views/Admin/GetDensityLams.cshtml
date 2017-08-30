@@ -1,0 +1,8 @@
+﻿@model IEnumerable<calculator.Models.DensityLamin>
+
+<select id="lamination" name="DensityLamin65">
+    @foreach (var item in Model)
+    {
+        <option value="@item.IdLam">@item.DensityLam</option>
+    }
+</select>

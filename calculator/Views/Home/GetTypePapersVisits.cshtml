@@ -1,0 +1,11 @@
+﻿@model IEnumerable<calculator.Models.TypePaper>
+
+    <select id="typePaperVisits" name="TypePaper" class="pole">
+    @foreach (var item in Model)
+    {
+        <option value="@item.IdTypePapers">@item.Name</option>
+    }
+</select>
+
+
+

@@ -1,0 +1,399 @@
+﻿@{
+    ViewBag.Title = "Calculator";
+}
+@Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+<style>
+    .nav-tabs > li > a:hover {
+        background-color: #303136;
+        border: medium none;
+        border-radius: 0;
+        color: #fff;
+    }
+
+    .nav > li > a {
+        border-radius: 0;
+        color: white;
+    }
+
+    #calc { /*border-style: solid;*/
+        border-right: solid;
+        border-bottom: solid;
+        border-left: solid;
+        border-top: solid;
+        padding-bottom: 5px;
+        margin-right: 30%;
+        margin-left: 20%;
+        font: 12pt sans-serif;
+    }
+
+    p {
+        margin-left: 5%;
+    }
+
+    .pole {
+        height: 20px;
+        width: 171px;
+        margin-right: 20%;
+        float: right;
+    }
+
+    .btn btn-default {
+        margin-left: 20%;
+        width: 171px;
+    }
+</style>
+<h2>Калькулятор</h2>
+<div id="calc">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a href="#Leaflets" data-toggle="tab">Листовая продукция</a></li>
+        <li><a href="#tab2" data-toggle="tab">Визитки</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="Leaflets">
+            @using (Ajax.BeginForm("costLeaflets", new AjaxOptions { UpdateTargetId = "results" }))
+            {
+                <br />
+                <p>
+                    Тираж
+                    <input type="number" id="QuantityVisitsVisits" name="quantityLeaflets" min="1" max="2000000000"
+                           value="1" class="pole" />
+                </p>
+                <p>
+                    Формат
+                    @Html.DropDownList("idFormat", ViewBag.FormatProductsList as SelectList, "Изделия", new { id = "formatProduct", @class = "pole" })
+                </p>
+                <p>
+                    Тип бумаги
+                    @Html.DropDownList("idPapers", ViewBag.TypePapers as SelectList, "", new
+{
+    id = "typePaper",
+    onchange = "enabledensityPaper.click()",
+    @class = "pole"
+})
+                </p>
+                <p>
+                    Плотность бумаги
+                    @Html.DropDownList("idDensityPaper", ViewBag.Densities as SelectList, "", new { id = "densityPaper", @class = "pole" })
+                </p>
+                <p>
+                    Цветность
+                    @Html.DropDownList("idColour", ViewBag.Colours as SelectList, new { onchange = "mybuttonId.click()", @class = "pole" })
+                </p>
+                <p>
+                    Ламинация
+                    @Html.DropDownList("idTypeLaminations", ViewBag.TypeLaminations as SelectList, "Без ламинации", new { id = "typeLamin", @class = "pole" })
+                </p>
+                <p>
+                    Плотность ламинации
+                    @Html.DropDownList("idLam", ViewBag.DensityLamins as SelectList, "", new { id = "lamin", onchange = "mybuttonId.click()", @class = "pole" })
+                </p>
+                <p>
+                    Биговка
+                    @Html.DropDownList("idBigovki", ViewBag.Bigovkas as SelectList, new { onchange = "mybuttonId.click()", @class = "pole" })
+                </p>
+                <p>
+                    Фальцовка
+                    @Html.DropDownList("idFaltsovki", ViewBag.Faltsovki as SelectList, new { onchange = "mybuttonId.click()", @class = "pole" })
+                </p>
+                <p>
+                    Кругление углов
+                    @Html.DropDownList("idRoundAngle", ViewBag.RoundAngles as SelectList, new { onchange = "mybuttonId.click()", @class = "pole" })
+                </p>
+
+                <input type="hidden" id="TypePape" name="idPape" />
+                <input type="hidden" id="DensPaper" name="idDensity" />
+                <input type="hidden" id="TypeLamination" name="idTypeLam" />
+                <input type="hidden" id="Lamination" name="idLam" />
+                <input type="hidden" id="makeOrderlist" name="makeOrderlist" />
+                <p>
+                    <input type="submit" value="Рассчитать стоимость заказа" onclick="CostList()" class="btn btn-default" />
+                </p>
+
+
+                if (ViewBag.user == true)
+                { <p>
+                    <input type="submit" name="AddOrder" value="Добавить в корзину" onclick="addOderlist()" class="btn btn-default" />
+
+                </p>}
+            }
+            <div id="results"></div>
+        </div>
+
+
+        <div class="tab-pane fade" id="tab2">
+            @using (Ajax.BeginForm("cosеtVistCard", new AjaxOptions { UpdateTargetId = "resultsVisits" }))
+            {
+                <br />
+                <p>
+                    Тираж
+                    <input type="number" id="QuantityVisitsVisits" name="quantityVisits" min="1" max="2000000000"
+                           value="1" class="pole" />
+                </p>
+                <p>
+                    Формат
+                    @Html.DropDownList("idFormat", ViewBag.FormatProductsVisits as SelectList, "Изделия", new { id = "formatProductVisits", onchange = "enabltypePapere.click()", @class = "pole" })
+                </p>
+                <p>
+                    Тип бумаги
+                    @Html.DropDownList("idPapers", ViewBag.TypePapersVisits as SelectList, "", new { id = "typePaperVisits", onchange = "enabledensityPaper.click()", @class = "pole" })
+                </p>
+                <p>
+                    Плотность бумаги 
+                    @Html.DropDownList("idDensityPaper", ViewBag.DensitiesVisits as SelectList, "", new { id = "densityPaperVisits", @class = "pole" })
+                </p>
+                <p>
+                    Цветность
+                    @Html.DropDownList("idColour", ViewBag.ColoursVisits as SelectList, new { onchange = "mybuttonId.click()", @class = "pole" })
+                </p>
+                <p>
+                    Ламинация
+                    @Html.DropDownList("idTypeLaminations", ViewBag.TypeLaminationsVisits as SelectList, "Без ламинации", new { id = "typeLaminVisits", @class = "pole" })
+                </p>
+                <p>
+                    Плотность ламинации
+                    @Html.DropDownList("idLamin", ViewBag.DensityLaminsVisits as SelectList, "", new { id = "laminVisits", onchange = "mybuttonId.click()", @class = "pole" })
+                </p>
+                <p>
+                    Кругление углов
+                    @Html.DropDownList("idRoundAngle", ViewBag.RoundAnglesVisits as SelectList, new { onchange = "mybuttonId.click()", @class = "pole" })
+                </p>
+
+
+
+                <input type="hidden" id="TypePapeVisits" name="idPapeVisits" />
+                <input type="hidden" id="DensPaperVisits" name="idDensityVisits" />
+                <input type="hidden" id="TypeLaminationVisits" name="idTypeLamVisits" />
+                <input type="hidden" id="LaminationVisits" name="idLamVisits" />
+
+                <input type="hidden" id="makeOrderVisit" name="makeOrderVisit" />
+                <p>
+                    <input type="submit" value="Рассчитать стоимость заказа" onclick="CostVisit()" class="btn btn-default" />
+                </p>
+
+                if (ViewBag.user == true)
+                { <p>
+                    <input type="submit" value="Добавить в корзину" onclick="addOderVisit()" class="btn btn-default" />
+                </p>
+                }
+            }
+            <div id="resultsVisits"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        var bool = false;
+
+
+
+        //    var o=document.getElementById('ButtonAddOrder')
+
+        //o.style.display = (o.style.display == 'none')? 'block': 'none'
+
+
+
+        var orderlist = document.getElementById('makeOrderlist');
+        function addOderlist() {
+            CostList()
+            orderlist.value = 1;
+        }
+        var orderVisit = document.getElementById('makeOrderVisit');
+        function addOderVisit() {
+            CostVisit()
+            orderVisit.value = 1;
+        }
+
+        var el3 = document.getElementById('TypeLamination');
+        var el4 = document.getElementById('Lamination');
+        el3.value = 0;
+        el4.value = 0;
+
+        var el3Visits = document.getElementById('TypeLaminationVisits');
+        var el4Visits = document.getElementById('LaminationVisits');
+        el3Visits.value = 0;
+        el4Visits.value = 0;
+
+
+        document.getElementById("typePaperVisits").disabled = true;
+        document.getElementById("densityPaperVisits").disabled = true;
+        $(function () {
+            $('#formatProductVisits').change(function () {
+                var id = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("GetTypePapersVisits")/' + id,
+                    success: function (data) {
+                        document.getElementById("densityPaperVisits").disabled = false;
+                        $('#typePaperVisits').replaceWith(data);
+                        id = $('#typePaperVisits').val();
+                        $.ajax({
+                            type: 'GET',
+                            url: '@Url.Action("GetDensityPapersVisits")/' + id,
+                            success: function (data) {
+                                $('#densityPaperVisits').replaceWith(data);
+                            }
+                        });
+                        $(function () {
+                            $('#typePaperVisits').change(function () {
+                                id = $('#typePaperVisits').val();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("GetDensityPapersVisits")/' + id,
+                                    success: function (data) {
+                                        $('#densityPaperVisits').replaceWith(data);
+                                    }
+                                });
+                            });
+                        });
+
+
+                        bool = true;
+                    },
+                    error: function () {
+                        document.getElementById("typePaperVisits").disabled = true;
+                        document.getElementById("densityPaperVisits").disabled = true;
+                        bool = false;
+                    }
+                });
+            });
+        })
+
+        document.getElementById("laminVisits").disabled = true;
+        $(function () {
+            $('#typeLaminVisits').change(function () {
+                var id = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("GetDensityLamsVisits")/' + id,
+                    success: function (data) {
+                        $('#laminVisits').replaceWith(data);
+                        el3Visits.value = $("#typeLaminVisits").val();
+                        el4Visits.value = $("#laminVisits").val();
+
+                    },
+                    error: function () {
+                        document.getElementById("laminVisits").disabled = true;
+                        el3Visits.value = 0;
+                        el4Visits.value = 0;
+
+                    }
+                });
+            });
+        })
+
+
+        function CostVisit() {
+            var el1Visits = document.getElementById('DensPaperVisits');
+            var el2Visits = document.getElementById('TypePapeVisits');
+            orderVisit.value = 0;
+
+            if (bool == false) {
+                alert("Обязательные параметры не выбраны")
+            }
+            else {
+                el1Visits.value = $("#densityPaperVisits").val();
+                el2Visits.value = $("#typePaperVisits").val();
+                el3Visits.value = $("#typeLaminVisits").val();
+                if (el3Visits.value > 0)
+                    el4Visits.value = $("#laminVisits").val();
+                else
+                    el3Visits.value = 0;
+            }
+        }
+
+
+        document.getElementById("lamin").disabled = true;
+        $(function () {
+            $('#typeLamin').change(function () {
+                var id = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("GetDensityLams")/' + id,
+                    success: function (data) {
+                        $('#lamin').replaceWith(data);
+                        el3.value = $("#typeLamin").val();
+                        el4.value = $("#lamin").val();
+                    },
+                    error: function () {
+                        document.getElementById("lamin").disabled = true;
+                        el3.value = 0;
+                        el4.value = 0;
+                    }
+                });
+            });
+        })
+
+        document.getElementById("typePaper").disabled = true;
+        document.getElementById("densityPaper").disabled = true;
+        $(function () {
+            $('#formatProduct').change(function () {
+                var id = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("GetTypePapers")/' + id,
+                    success: function (data) {
+                        $('#typePaper').replaceWith(data);
+                        id = $('#typePaper').val();
+                        $.ajax({
+                            type: 'GET',
+                            url: '@Url.Action("GetDensityPapers")/' + id,
+                            success: function (data) {
+                                $('#densityPaper').replaceWith(data);
+                            }
+                        });
+                        $(function () {
+                            $('#typePaper').change(function () {
+                                id = $('#typePaper').val();
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("GetDensityPapers")/' + id,
+                                    success: function (data) {
+                                        $('#densityPaper').replaceWith(data);
+                                    }
+                                });
+                            });
+                        })
+                        bool = true;
+                    },
+                    error: function () {
+                        document.getElementById("typePaper").disabled = true;
+                        document.getElementById("densityPaper").disabled = true;
+                        bool = false;
+                    }
+                });
+            });
+        })
+
+
+        var el1 = document.getElementById('DensPaper');
+        var el2 = document.getElementById('TypePape');
+
+        function CostList() {
+            orderlist.value = 0;
+            if (bool == false) {
+                alert("Обязательные параметры не выбраны")
+            }
+            else {
+                el1.value = $("#densityPaper").val();
+                el2.value = $("#typePaper").val();
+
+                el3.value = $("#typeLamin").val();
+                if (el3.value > 0)
+                    el4.value = $("#lamin").val();
+                else
+                    el3.value = 0;
+
+            }
+        }
+
+
+    </script>
+}
+
+
+@*<input type="button" onclick="enabltypePapere()" value="Disable list" style="display: none">
+    <input type="button" onclick="enabledensityPaper()" value="Enable list" style="display: none">*@
+
+

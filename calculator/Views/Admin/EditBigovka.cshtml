@@ -1,0 +1,42 @@
+﻿@model calculator.Models.Bigovka
+
+@{
+    ViewBag.Title = "EditBigovka";
+}
+
+<h2>Редактировать биговку</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+       
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.IdBigovki)
+
+        <div class="form-group">
+            <div class="col-md-10">
+                Тип биговки
+                @Html.EditorFor(model => model.TypeBigovki)
+                @Html.ValidationMessageFor(model => model.TypeBigovki)
+            </div>
+        </div>
+
+        <div class="form-group">
+           <div class="col-md-10">
+               Стоимость
+                @Html.EditorFor(model => model.CostBigovki)
+                @Html.ValidationMessageFor(model => model.CostBigovki)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

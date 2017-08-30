@@ -1,0 +1,48 @@
+﻿@model calculator.Models.User
+
+@{
+    ViewBag.Title = "Детали заказчика";
+}
+
+<h2>Детали заказчика</h2>
+
+<div>
+    <h4>Заказчик</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Вернуться к заказам", "ViewOders")
+</p>

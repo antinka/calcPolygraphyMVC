@@ -1,0 +1,72 @@
+﻿@model calculator.Models.CostOfOwner
+
+@{
+    ViewBag.Title = "Редактировать стоимость владения";
+}
+
+<h2>Редактировать стоимость владения</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <div class="col-md-10">
+                Возврат инвестиций
+                @Html.EditorFor(model => model.ReturnInvestision)
+                @Html.ValidationMessageFor(model => model.ReturnInvestision)
+            </div>
+        </div>
+
+        <div class="form-group">
+             <div class="col-md-10">
+                 Заработная плата
+                @Html.EditorFor(model => model.Salary)
+                @Html.ValidationMessageFor(model => model.Salary)
+            </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-10">
+              Аренда
+                @Html.EditorFor(model => model.Rent)
+                @Html.ValidationMessageFor(model => model.Rent)
+            </div>
+        </div>
+
+        <div class="form-group">
+           <div class="col-md-10">
+               Месячная стоимость владения машинами
+                @Html.EditorFor(model => model.CostOwnMachine)
+                @Html.ValidationMessageFor(model => model.CostOwnMachine)
+            </div>
+        </div>
+
+        <div class="form-group">
+           <div class="col-md-10">
+               Общепроизводственные издержки
+                @Html.EditorFor(model => model.GeneralProdSpend)
+                @Html.ValidationMessageFor(model => model.GeneralProdSpend)
+            </div>
+        </div>
+
+        <div class="form-group">
+           <div class="col-md-10">
+               Количество рабочих часов машин в месяц 
+                @Html.EditorFor(model => model.TimeWorkingInMonth)
+                @Html.ValidationMessageFor(model => model.TimeWorkingInMonth)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Сохранить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<calculator.Models.MyViewModel.ViewHistLamBuy>
+
+@{
+    ViewBag.Title = "История закупок";
+}
+
+<h2>История закупок</h2>
+
+<p>
+    @Html.ActionLink("Добавить новую закупку", "HistCreateCostLamin")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Формат бумаги
+        </th>
+        <th>
+            Плотность
+        </th>
+        <th>
+            Тип ламинации
+        </th>
+        <th>
+            Количество
+        </th>
+        <th>
+            Дата
+        </th>
+        <th>
+            Стоимость ламинации 1го листа
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.formatPaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.densityLam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.typeLam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityList)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostOnePage)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "HistEditCostLamin", new { id = item.id }) 
+            </td>
+        </tr>
+    }
+
+</table>

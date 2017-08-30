@@ -1,0 +1,37 @@
+﻿@model IEnumerable<calculator.Models.MyViewModel.ViewCharLam>
+
+@{
+    ViewBag.Title = "Характеристика скорости ламинирования";
+}
+
+<h2>Характеристика скорости ламинирования</h2>
+
+<table class="table">
+    <tr>
+        <th>
+         Формат бумаги
+        </th>
+        <th>
+            Количество листов в минуту
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.formatPaper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityListInMinute)
+            </td>
+      
+            <td>
+                @Html.ActionLink("Редактировать", "EditCharLamMach", new { id = item.id }) 
+            
+            </td>
+        </tr>
+    }
+
+</table>

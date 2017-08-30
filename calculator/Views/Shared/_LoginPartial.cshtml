@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    var usr = Session["user"] as calculator.Models.User;
+}
+@if (usr != null)
+{
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Редактировать профиль", "EditMyself", "User")</li>
+            <li>@Html.ActionLink("Выйти", "LogOut", "User")</li>
+          
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <ul class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </ul>
+</button>
+               @Html.ActionLink("Корзина", "Basket", "Home", null, new { @class = "navbar-brand" })
+            </div>  
+</div>
+  
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Регистрация", "Registration", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Вход", "Login", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

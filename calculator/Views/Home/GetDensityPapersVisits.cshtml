@@ -1,0 +1,11 @@
+﻿@model IEnumerable<calculator.Models.Density>
+
+    <select id="densityPaperVisits" name="Density" class="pole">
+    @foreach (var item in Model)
+    {
+        <option value="@item.IdDensity">@item.Value</option>
+    }
+</select>
+
+
+
